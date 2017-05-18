@@ -2,9 +2,12 @@ package com.example.a15017206.p05_ps_ndpthemesong;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import java.util.ArrayList;
 
 /**
  * Created by 15017206 on 18/05/2017.
@@ -56,5 +59,29 @@ public class DBHelper extends SQLiteOpenHelper{
         db.close();
         Log.d("SQL Insert", "" + result); //id returned, shouldn’t be -1
         return result;
+    }
+
+    public ArrayList<String> getAllSongs() {
+        ArrayList<String> notes = new ArrayList<String>();
+
+        String selectQuery = "SELECT " + SONG_ID + "," + SONG_TITLE  + SINGER_NAME + "," + YEAR_RELEASE + "," + NO_OF_STARS + " FROM " + TABLE_NAME;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+
+                int id = cursor.getInt(0);
+                String songTitle = cursor.getString(1);
+                String singerName = cursor.getString(2);
+                String yearReleased = cursor.getString(3);
+                String noOfStars = cursor.getString(4);
+
+                notes.add("ID:" + id + ", " + songTitle+ ", " + singerName + ", " + yearReleased + ", " + noOfStars);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return notes;
     }
 }
