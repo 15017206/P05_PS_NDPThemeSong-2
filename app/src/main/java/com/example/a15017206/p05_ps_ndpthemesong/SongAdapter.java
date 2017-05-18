@@ -18,7 +18,7 @@ import java.util.List;
  * Created by 15017206 on 18/05/2017.
  */
 
-public class SongAdapter extends ArrayAdapter<Song>{
+public class SongAdapter extends ArrayAdapter<Song> {
 
     ArrayList<Song> songs;
     Context context;
@@ -34,9 +34,8 @@ public class SongAdapter extends ArrayAdapter<Song>{
         this.resource = resource;
     }
 
-    @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.row, parent, false);
@@ -54,11 +53,36 @@ public class SongAdapter extends ArrayAdapter<Song>{
 
         Song currentSong = songs.get(position);
 
+        if (currentSong.getNoOfStars() == 5) {
+            iv1star.setImageResource(android.R.drawable.star_big_on);
+            iv2star.setImageResource(android.R.drawable.star_big_on);
+            iv3star.setImageResource(android.R.drawable.star_big_on);
+            iv4star.setImageResource(android.R.drawable.star_big_on);
+            iv5star.setImageResource(android.R.drawable.star_big_on);
+        } else if (currentSong.getNoOfStars() == 4) {
+            iv1star.setImageResource(android.R.drawable.star_big_on);
+            iv2star.setImageResource(android.R.drawable.star_big_on);
+            iv3star.setImageResource(android.R.drawable.star_big_on);
+            iv4star.setImageResource(android.R.drawable.star_big_on);
+        } else if (currentSong.getNoOfStars() == 3) {
+            iv1star.setImageResource(android.R.drawable.star_big_on);
+            iv2star.setImageResource(android.R.drawable.star_big_on);
+            iv3star.setImageResource(android.R.drawable.star_big_on);
+        } else if (currentSong.getNoOfStars() == 2) {
+            iv1star.setImageResource(android.R.drawable.star_big_on);
+            iv2star.setImageResource(android.R.drawable.star_big_on);
+        } else if (currentSong.getNoOfStars() == 1) {
+            iv1star.setImageResource(android.R.drawable.star_big_on);
+        } else if (currentSong.getNoOfStars() == 0) {
+
+        }
+
+        tvSinger.setText(currentSong.getSinger());
+        tvSongTitle.setText(currentSong.getSongTitle());
+        tvYear.setText(currentSong.getYear() + "");
 
 
 
-
-
-        return super.getView(position, convertView, parent);
+        return rowView;
     }
 }

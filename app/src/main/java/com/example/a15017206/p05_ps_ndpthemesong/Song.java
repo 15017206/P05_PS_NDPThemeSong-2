@@ -14,7 +14,7 @@ public class Song {
         this.songTitle = songTitle;
         this.singer = singer;
         this.year = year;
-        NoOfStars = noOfStars;
+        this.NoOfStars = noOfStars;
     }
 
     public String getSongTitle(){

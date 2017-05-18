@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Created by 15017206 on 18/05/2017.
  */
 
-public class DBHelper extends SQLiteOpenHelper{
+public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "ndpThemeSong.db";
     private static final int DATABASE_VERSION = 2;
@@ -30,9 +30,10 @@ public class DBHelper extends SQLiteOpenHelper{
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createNoteTableSql = " CREATE TABLE " + TABLE_NAME + "(" + SONG_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + SONG_TITLE + " TEXT, " + SINGER_NAME + " TEXT, " + YEAR_RELEASE +" INTEGER, " + NO_OF_STARS + " INTEGER ) ";
+        String createNoteTableSql = " CREATE TABLE " + TABLE_NAME + "(" + SONG_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + SONG_TITLE + " TEXT, " + SINGER_NAME + " TEXT, " + YEAR_RELEASE + " INTEGER, " + NO_OF_STARS + " INTEGER ) ";
         db.execSQL(createNoteTableSql);
         Log.i("info", "created tables");
     }
@@ -61,10 +62,10 @@ public class DBHelper extends SQLiteOpenHelper{
         return result;
     }
 
-    public ArrayList<String> getAllSongs() {
-        ArrayList<String> notes = new ArrayList<String>();
+    public ArrayList<Song> getAllSongs() {
+        ArrayList<Song> songs = new ArrayList<Song>();
 
-        String selectQuery = "SELECT " + SONG_ID + "," + SONG_TITLE  + SINGER_NAME + "," + YEAR_RELEASE + "," + NO_OF_STARS + " FROM " + TABLE_NAME;
+        String selectQuery = "SELECT " + SONG_ID + "," + SONG_TITLE + "," + SINGER_NAME + "," + YEAR_RELEASE + "," + NO_OF_STARS + " FROM " + TABLE_NAME;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -74,14 +75,14 @@ public class DBHelper extends SQLiteOpenHelper{
                 int id = cursor.getInt(0);
                 String songTitle = cursor.getString(1);
                 String singerName = cursor.getString(2);
-                String yearReleased = cursor.getString(3);
-                String noOfStars = cursor.getString(4);
+                int yearReleased = cursor.getInt(3);
+                int noOfStars = cursor.getInt(4);
 
-                notes.add("ID:" + id + ", " + songTitle+ ", " + singerName + ", " + yearReleased + ", " + noOfStars);
+                songs.add(new Song(songTitle, singerName, yearReleased, noOfStars));
             } while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
-        return notes;
+        return songs;
     }
 }
