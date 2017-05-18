@@ -26,6 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String SINGER_NAME = "singer_name";
     private static final String YEAR_RELEASE = "year_released";
     private static final String NO_OF_STARS = "no_of_stars";
+    private static final String COLUMN_NOTE_CONTENT = "";
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -78,11 +79,50 @@ public class DBHelper extends SQLiteOpenHelper {
                 int yearReleased = cursor.getInt(3);
                 int noOfStars = cursor.getInt(4);
 
-                songs.add(new Song(songTitle, singerName, yearReleased, noOfStars));
+                songs.add(new Song(id, songTitle, singerName, yearReleased, noOfStars));
             } while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
         return songs;
     }
+
+    public int deleteNote(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String condition = SONG_ID + "= ?";
+        String[] args = {String.valueOf(id)};
+        int result = db.delete(TABLE_NAME, condition, args);
+        db.close();
+        return result;
+    }
+
+    public ArrayList<Song> getAllSongs(String keyword) {
+        ArrayList<Song> songsFiltered = new ArrayList<Song>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] columns= {SONG_ID, SONG_TITLE, SINGER_NAME, YEAR_RELEASE, NO_OF_STARS};
+        String condition = NO_OF_STARS + " Like ?";
+        String[] args = { "%" +  keyword + "%"};
+
+        Cursor cursor = db.query(TABLE_NAME, columns, condition, args,
+                null, null, null, null); //<-- wad is null null null null
+
+        if (cursor.moveToFirst()) {
+            do {
+                int songId = cursor.getInt(0);
+                String songTitle = cursor.getString(1);
+                String singerName = cursor.getString(2);
+                int yearRelease = cursor.getInt(3);
+                int noOfStars = cursor.getInt(4);
+
+                Song song = new Song(songId, songTitle, singerName, yearRelease, noOfStars);
+                songsFiltered.add(song);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return songsFiltered;
+    }
+
 }

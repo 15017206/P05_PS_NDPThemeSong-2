@@ -5,12 +5,14 @@ package com.example.a15017206.p05_ps_ndpthemesong;
  */
 
 public class Song {
+    private int id;
     private String songTitle;
     private String singer;
     private int year;
     private int NoOfStars;
 
-    public Song(String songTitle, String singer, int year, int noOfStars) {
+    public Song(int id, String songTitle, String singer, int year, int noOfStars) {
+        this.id = id;
         this.songTitle = songTitle;
         this.singer = singer;
         this.year = year;
@@ -19,6 +21,10 @@ public class Song {
 
     public String getSongTitle(){
         return songTitle;
+    }
+
+    public int getId(){
+        return id;
     }
 
     public String getSinger() {

@@ -81,8 +81,6 @@ public class SongAdapter extends ArrayAdapter<Song> {
         tvSongTitle.setText(currentSong.getSongTitle());
         tvYear.setText(currentSong.getYear() + "");
 
-
-
         return rowView;
     }
 }

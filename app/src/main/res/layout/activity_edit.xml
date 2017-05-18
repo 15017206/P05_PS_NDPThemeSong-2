@@ -23,42 +23,42 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Song ID" />
+                android:text="Song title" />
 
             <EditText
-                android:id="@+id/editSong"
+                android:id="@+id/editSongTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Enter song ID here"
+                android:hint="Enter song title here"
                 android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Song Title" />
+                android:text="Singer's name" />
 
             <EditText
                 android:id="@+id/editSingerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Enter Song Title here"
+                android:hint="Enter singers' name here"
                 android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Singers" />
+                android:text="Year of release" />
 
             <EditText
                 android:id="@+id/editYearRelease"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Enter Singers here"
+                android:hint="Enter year of release here"
                 android:inputType="number" />
 
             <TextView
@@ -74,14 +74,14 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radioButton5"
+                    android:id="@+id/radioButton1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="1" />
 
                 <RadioButton
-                    android:id="@+id/radioButton4"
+                    android:id="@+id/radioButton2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -95,14 +95,14 @@
                     android:text="3" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/radioButton4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="4" />
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/radioButton5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -115,14 +115,14 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnInsert"
+                    android:id="@+id/btnUpdate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Update" />
 
                 <Button
-                    android:id="@+id/btnShowList"
+                    android:id="@+id/btnDelete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
