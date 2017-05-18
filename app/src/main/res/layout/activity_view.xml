@@ -7,7 +7,15 @@
     tools:context="com.example.a15017206.p05_ps_ndpthemesong.ViewActivity"
     android:orientation="vertical">
 
-    
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SHOW ALL SONGS WITH 5 STARS" />
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv"/>
 </LinearLayout>
