@@ -29,7 +29,7 @@ public class DBHelper extends SQLiteOpenHelper{
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createNoteTableSql = " CREATE TABLE " + TABLE_NAME + "(" + SONG_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + SONG_TITLE + " TEXT, " + SINGER_NAME + " TEXT, " + YEAR_RELEASE +" TEXT, " + NO_OF_STARS + " INTEGER ) ";
+        String createNoteTableSql = " CREATE TABLE " + TABLE_NAME + "(" + SONG_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + SONG_TITLE + " TEXT, " + SINGER_NAME + " TEXT, " + YEAR_RELEASE +" INTEGER, " + NO_OF_STARS + " INTEGER ) ";
         db.execSQL(createNoteTableSql);
         Log.i("info", "created tables");
     }
